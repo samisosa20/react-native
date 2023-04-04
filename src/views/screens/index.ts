@@ -1,8 +1,10 @@
 import Home from './Home';
+import List from './List';
 
 const useScreens = () => {
     return {
-        Home
+        Home,
+        List,
     };
   };
   

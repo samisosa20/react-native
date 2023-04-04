@@ -1,23 +1,20 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import useViews from './src/views'
 
+// Config
+import useConfig from "./src/config";
 
 export default function App() {
-  const { useScreens } = useViews()
-  const { Home } = useScreens()
-  const Stack = createNativeStackNavigator();
-  
+  const { useComponents } = useViews()
+  const { MyDrawer } = useComponents()
+  const { useInterceptor } = useConfig();
+
+  useInterceptor();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{title: 'Welcome'}}
-        />
-      </Stack.Navigator>
+      <MyDrawer />
     </NavigationContainer>
   )
 }

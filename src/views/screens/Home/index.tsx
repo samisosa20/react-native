@@ -8,7 +8,9 @@ import useComponents from '../../components';
 // themes
 import theme from '../../../themes'
 
-const Home = () => {
+const Home = (props: any) => {
+  const {navigation} = props
+
   const { ButtonDefault, Typography, ModalDefault } = useComponents()
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -17,8 +19,8 @@ const Home = () => {
       <Typography style={{...theme.textTitle, marginBottom: 12}}>Hello Word!</Typography>
       <Typography style={{...theme.textP, marginBottom: 8}}>se esta usando las constante de expo para garantizar las dimensiones en los diferentes dispositivos</Typography>
       <Typography style={{ ...theme.textSubtitle, marginBottom: 4 }}>A continucaion tendremos varias acciones:</Typography>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <View style={{width: 150, }}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap'}}>
+        <View style={{width: 150 }}>
           <Typography style={theme.textP}>Button</Typography>
           <ButtonDefault title="alert button" onPress={() => Alert.alert('Esto es un mensaje mostrado por un alert')} />
         </View>
@@ -27,6 +29,10 @@ const Home = () => {
           <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} style={theme.buttonPrimary}>
             <Typography style={theme.textButtonPrimary}>Open Modal</Typography>
           </TouchableOpacity>
+        </View>
+        <View style={{width: 150 }}>
+          <Typography style={theme.textP}>Navegation</Typography>
+          <ButtonDefault title="Listado" onPress={() =>  navigation.navigate('List', {name: 'Jane'})} />
         </View>
       </View>
       <ModalDefault onClose={() => setModalVisible(!modalVisible)} show={modalVisible}/>
